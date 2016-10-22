@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.EF", "Poetry.EF\Poetry.EF.csproj", "{4C9FB729-FA4B-4CF4-B39D-47B8A9BC2922}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.Uploader", "Poetry.Uploader\Poetry.Uploader.csproj", "{6E9DD6B7-6BA2-4CE3-B257-215A8E6D15E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.Uploader.Tests", "Poetry.Uploader.Tests\Poetry.Uploader.Tests.csproj", "{AFDAE2B7-E8FF-4E72-A31E-1D3888E35993}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.API", "Poetry.API\Poetry.API.csproj", "{DA52DE01-516E-43B6-B301-B3DC7CFBC67A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.API.Tests", "Poetry.API.Tests\Poetry.API.Tests.csproj", "{019E172C-BF21-40D0-BA30-D38FE3C72102}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.DTO", "Poetry.DTO\Poetry.DTO.csproj", "{7C2FFB94-40E1-4A7E-A963-333959997C23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.Services", "Poetry.Services\Poetry.Services.csproj", "{5BCE9122-22DF-437D-AD5D-F0C88CF0929C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C9FB729-FA4B-4CF4-B39D-47B8A9BC2922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C9FB729-FA4B-4CF4-B39D-47B8A9BC2922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C9FB729-FA4B-4CF4-B39D-47B8A9BC2922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C9FB729-FA4B-4CF4-B39D-47B8A9BC2922}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E9DD6B7-6BA2-4CE3-B257-215A8E6D15E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E9DD6B7-6BA2-4CE3-B257-215A8E6D15E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E9DD6B7-6BA2-4CE3-B257-215A8E6D15E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E9DD6B7-6BA2-4CE3-B257-215A8E6D15E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFDAE2B7-E8FF-4E72-A31E-1D3888E35993}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFDAE2B7-E8FF-4E72-A31E-1D3888E35993}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFDAE2B7-E8FF-4E72-A31E-1D3888E35993}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFDAE2B7-E8FF-4E72-A31E-1D3888E35993}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA52DE01-516E-43B6-B301-B3DC7CFBC67A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA52DE01-516E-43B6-B301-B3DC7CFBC67A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA52DE01-516E-43B6-B301-B3DC7CFBC67A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA52DE01-516E-43B6-B301-B3DC7CFBC67A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{019E172C-BF21-40D0-BA30-D38FE3C72102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{019E172C-BF21-40D0-BA30-D38FE3C72102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{019E172C-BF21-40D0-BA30-D38FE3C72102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{019E172C-BF21-40D0-BA30-D38FE3C72102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C2FFB94-40E1-4A7E-A963-333959997C23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C2FFB94-40E1-4A7E-A963-333959997C23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C2FFB94-40E1-4A7E-A963-333959997C23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C2FFB94-40E1-4A7E-A963-333959997C23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BCE9122-22DF-437D-AD5D-F0C88CF0929C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BCE9122-22DF-437D-AD5D-F0C88CF0929C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BCE9122-22DF-437D-AD5D-F0C88CF0929C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BCE9122-22DF-437D-AD5D-F0C88CF0929C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

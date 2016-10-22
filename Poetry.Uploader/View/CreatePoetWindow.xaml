@@ -1,0 +1,57 @@
+﻿<Window x:Class="Poetry.Uploader.View.CreatePoetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Poetry.Uploader.View"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        mc:Ignorable="d"
+        Title="CreatePoetWindow" 
+        x:Name="createPoetWindow"
+        DataContext="{Binding Source={StaticResource Locator}, Path=CreatePoet}"
+        Height="300" 
+        Width="300">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <cmd:EventToCommand Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <wpfTool:BusyIndicator Grid.Column="0"
+                               Grid.Row="0"
+                               Grid.ColumnSpan="2"
+                               Grid.RowSpan="2"
+                               IsBusy="{Binding IsBusy}" />
+
+        <DataGrid Grid.Row="0"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Poets, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name"
+                                    Width="*"
+                                    Binding="{Binding Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Grid.Column="0"
+                Grid.Row="1"
+                Content="Ok"
+                IsCancel="True"/>
+
+    </Grid>
+</Window>
