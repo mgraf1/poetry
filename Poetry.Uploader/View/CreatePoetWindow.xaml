@@ -1,5 +1,4 @@
-﻿<Window x:Class="Poetry.Uploader.View.CreatePoetWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -7,12 +6,14 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:shared="clr-namespace:Poetry.Uploader.View.Shared"
+        x:Class="Poetry.Uploader.View.CreatePoetWindow"
         mc:Ignorable="d"
-        Title="CreatePoetWindow" 
+        Title="CreatePoetWindow"
         x:Name="createPoetWindow"
-        DataContext="{Binding Source={StaticResource Locator}, Path=CreatePoet}"
-        Height="300" 
-        Width="300">
+        DataContext="{Binding CreatePoet, Source={StaticResource Locator}}"
+        Height="300"
+        Width="500">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -22,36 +23,61 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="4*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <wpfTool:BusyIndicator Grid.Column="0"
                                Grid.Row="0"
-                               Grid.ColumnSpan="2"
-                               Grid.RowSpan="2"
-                               IsBusy="{Binding IsBusy}" />
+                               Grid.ColumnSpan="3"
+                               Grid.RowSpan="4"
+                               IsBusy="{Binding IsBusy}"
+                               Panel.ZIndex="1">
+            
+        </wpfTool:BusyIndicator>
 
         <DataGrid Grid.Row="0"
                   Grid.Column="0"
                   Grid.ColumnSpan="2"
+                  Grid.RowSpan="3"
+                  x:Name="poetDataGrid"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
                   AutoGenerateColumns="False"
-                  ItemsSource="{Binding Poets, Mode=TwoWay}">
+                  ItemsSource="{Binding Poets}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name"
                                     Width="*"
-                                    Binding="{Binding Name}"/>
+                                    Binding="{Binding Name}" />
             </DataGrid.Columns>
         </DataGrid>
 
         <Button Grid.Column="0"
-                Grid.Row="1"
+                Grid.Row="3"
                 Content="Ok"
-                IsCancel="True"/>
+                IsCancel="True" />
+
+        <shared:ErrorDisplay Grid.Column="1"
+                             Grid.Row="3"
+                             Grid.ColumnSpan="2"
+                             ControlToValidate="{Binding ElementName=poetDataGrid}" />
+
+        <wpfTool:WatermarkTextBox Grid.Column="2"
+                                  Grid.Row="1" 
+                                  Text="{Binding PoetToAdd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  Watermark="Poet"/>
+
+        <Button Grid.Column="2"
+                Grid.Row="2"
+                Content="Add"
+                Command="{Binding AddPoetCommand}"/>
 
     </Grid>
 </Window>

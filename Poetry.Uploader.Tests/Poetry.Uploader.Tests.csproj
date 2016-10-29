@@ -86,6 +86,7 @@
     <Compile Include="PoetryGeneration\MarkovChainTests.cs" />
     <Compile Include="PoetryGeneration\NGramTests.cs" />
     <Compile Include="PoetryGeneration\PoetryParserTests.cs" />
+    <Compile Include="ViewModel\CreatePoetViewModelTests.cs" />
     <Compile Include="ViewModel\MainViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\PoemUploadViewModelTests.cs" />
@@ -95,6 +96,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Poetry.DTO\Poetry.DTO.csproj">
+      <Project>{7C2FFB94-40E1-4A7E-A963-333959997C23}</Project>
+      <Name>Poetry.DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Poetry.Uploader\Poetry.Uploader.csproj">
       <Project>{6E9DD6B7-6BA2-4CE3-B257-215A8E6D15E6}</Project>
       <Name>Poetry.Uploader</Name>

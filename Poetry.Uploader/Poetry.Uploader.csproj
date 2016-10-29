@@ -114,8 +114,11 @@
     <Compile Include="Services\Api\Requests\IApiService.cs" />
     <Compile Include="Services\Api\IPoetService.cs" />
     <Compile Include="Services\Api\PoetService.cs" />
+    <Compile Include="Services\Messages\DataGridRowEditEndingMessage.cs" />
     <Compile Include="Services\Messages\ShowDialogMessages.cs" />
     <Compile Include="Services\Messages\OpenFileResultMessage.cs" />
+    <Compile Include="Services\WpfHelpers\Dispatcher.cs" />
+    <Compile Include="Services\WpfHelpers\IDispatcher.cs" />
     <Compile Include="ViewModel\CreatePoetViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PoemUploadViewModel.cs" />
@@ -128,6 +131,9 @@
     </Compile>
     <Compile Include="View\PoetSelectionWindow.xaml.cs">
       <DependentUpon>PoetSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Shared\ErrorDisplay.xaml.cs">
+      <DependentUpon>ErrorDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WindowBase.cs" />
     <Page Include="View\CreatePoetWindow.xaml">
@@ -152,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PoetSelectionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Shared\ErrorDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

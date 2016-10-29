@@ -15,15 +15,27 @@ namespace Poetry.Uploader.Services.Api.Requests
 
         public async Task<string> GetRequestAsync(string apiArgs)
         {
+            HttpClient client = _setupWebClient();
+            var requestTaskResult = await client.GetAsync(apiArgs);
+            requestTaskResult.EnsureSuccessStatusCode();
+            return await requestTaskResult.Content.ReadAsStringAsync();
+        }
+
+        public async Task<string> PostRequestAsync(string apiArgs, string jsonContent)
+        {
+            HttpClient client = _setupWebClient();
+            var content = new StringContent(jsonContent, Encoding.Default, ACCEPT_HEADER);
+            var requestTaskResult = await client.PostAsync(apiArgs, content);
+            requestTaskResult.EnsureSuccessStatusCode();
+            return await requestTaskResult.Content.ReadAsStringAsync();
+        }
+
+        private HttpClient _setupWebClient()
+        {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(API_URL);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ACCEPT_HEADER));
-
-            var requestTaskResult = await client.GetAsync(apiArgs);
-            requestTaskResult.EnsureSuccessStatusCode();
-            var jsonString = await requestTaskResult.Content.ReadAsStringAsync();
-
-            return jsonString;
+            return client;
         }
     }
 }

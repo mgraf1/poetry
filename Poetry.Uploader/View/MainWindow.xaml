@@ -6,6 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Poetry.Uploader"
         xmlns:view="clr-namespace:Poetry.Uploader.View"
+        xmlns:shared="clr-namespace:Poetry.Uploader.View.Shared"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         mc:Ignorable="d"
         Title="MainWindow"
@@ -57,16 +58,7 @@
                       SelectedItem="{Binding GramSize, ValidatesOnDataErrors=True}"
                       ItemsSource="{Binding GramSizeSource}"/>
 
-            <ContentPresenter Content="{Binding ElementName=gramSizeCombo, Path=(Validation.Errors).CurrentItem}">
-                <ContentPresenter.ContentTemplate>
-                    <DataTemplate>
-                        <TextBlock Foreground="Red"
-                                   FontStyle="Italic"
-                                   Text="{Binding Path=ErrorContent}"
-                                   TextWrapping="Wrap"/>
-                    </DataTemplate>
-                </ContentPresenter.ContentTemplate>
-            </ContentPresenter>
+            <shared:ErrorDisplay ControlToValidate="{Binding ElementName=gramSizeCombo}" />
 
         </StackPanel>
 

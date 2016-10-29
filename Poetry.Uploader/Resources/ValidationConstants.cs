@@ -12,5 +12,20 @@ namespace Poetry.Uploader.Resources
         {
             get { return "Gram Size must be greater than 0."; }
         }
+
+        public static string CreatePoetViewModel_DuplicatePoetErr
+        {
+            get { return "Poet already exists."; }
+        }
+
+        public static string CreatePoetViewModel_FailedLoad
+        {
+            get { return "Poets failed to load"; }
+        }
+
+        public static string CreatePoetViewModel_FailedAddPoet
+        {
+            get { return "Unable to add poet."; }
+        }
     }
 }

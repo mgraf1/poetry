@@ -10,5 +10,7 @@ namespace Poetry.Uploader.Services.Api.Requests
     public interface IApiService
     {
         Task<string> GetRequestAsync(string apiArgs);
+
+        Task<string> PostRequestAsync(string apiArgs, string jsonContent);
     }
 }

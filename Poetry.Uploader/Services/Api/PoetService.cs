@@ -17,15 +17,17 @@ namespace Poetry.Uploader.Services.Api
         {
             _apiService = apiService;
         }
-        public PoetDTO AddPoet(PoetDTO poet)
+        public async Task<PoetDTO> AddPoet(PoetDTO poet)
         {
-            throw new NotImplementedException();
+            string poetJson = new JavaScriptSerializer().Serialize(poet);
+            string jsonResponse = await _apiService.PostRequestAsync("/api/poet", poetJson);
+            return new JavaScriptSerializer().Deserialize<PoetDTO>(jsonResponse);
         }
 
         public async Task<IEnumerable<PoetDTO>> GetAllPoets()
         {
-            string json = await _apiService.GetRequestAsync("/api/poet");
-            return new JavaScriptSerializer().Deserialize<IEnumerable<PoetDTO>>(json);
+            string jsonResponse = await _apiService.GetRequestAsync("/api/poet");
+            return new JavaScriptSerializer().Deserialize<IEnumerable<PoetDTO>>(jsonResponse);
         }
 
         public async Task<PoetDTO> GetPoet(int id)
