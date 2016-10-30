@@ -68,5 +68,18 @@ namespace Poetry.API.Controllers
                 return InternalServerError();
             }
         }
+
+        [HttpDelete]
+        public IHttpActionResult DeletePoet([FromUri]int id) {
+            try
+            {
+                var poetToReturn = _poetService.DeletePoet(id);
+                return Ok(poetToReturn);
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
     }
 }

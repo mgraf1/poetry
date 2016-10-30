@@ -35,5 +35,11 @@ namespace Poetry.Uploader.Services.Api
             string json = await _apiService.GetRequestAsync("/api/poet/" + id);
             return new JavaScriptSerializer().Deserialize<PoetDTO>(json);
         }
+
+        public async Task<PoetDTO> DeletePoet(int id)
+        {
+            string json = await _apiService.DeleteRequestAsync("/api/poet/" + id);
+            return new JavaScriptSerializer().Deserialize<PoetDTO>(json);
+        }
     }
 }

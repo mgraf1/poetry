@@ -21,6 +21,14 @@ namespace Poetry.Uploader.Services.Api.Requests
             return await requestTaskResult.Content.ReadAsStringAsync();
         }
 
+        public async Task<string> DeleteRequestAsync(string apiArgs)
+        {
+            HttpClient client = _setupWebClient();
+            var requestTaskResult = await client.DeleteAsync(apiArgs);
+            requestTaskResult.EnsureSuccessStatusCode();
+            return await requestTaskResult.Content.ReadAsStringAsync();
+        }
+
         public async Task<string> PostRequestAsync(string apiArgs, string jsonContent)
         {
             HttpClient client = _setupWebClient();

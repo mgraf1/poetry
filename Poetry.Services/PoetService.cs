@@ -48,5 +48,23 @@ namespace Poetry.Services
                 }
             }
         }
+
+        public PoetDTO DeletePoet(int id)
+        {
+            using (var db = new PoetryContext())
+            {
+                var poetEntity = db.POET.Find(id);
+                if (poetEntity != null)
+                {
+                    db.POET.Remove(poetEntity);
+                    db.SaveChanges();
+                    return Mapper.Map<Poet, PoetDTO>(poetEntity);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

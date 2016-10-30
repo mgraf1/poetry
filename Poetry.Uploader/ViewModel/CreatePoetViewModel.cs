@@ -39,6 +39,15 @@ namespace Poetry.Uploader.ViewModel
             }
         }
 
+        public PoetDTO SelectedPoet { get { return _selectedPoet; }
+            set
+            {
+                _selectedPoet = value;
+                RaisePropertyChanged(nameof(SelectedPoet));
+                ((RelayCommand<object>)DeletePoetCommand).RaiseCanExecuteChanged();
+            }
+        }
+
         public ICommand LoadedCommand
         {
             get
@@ -59,6 +68,17 @@ namespace Poetry.Uploader.ViewModel
                     _addPoetCommand = new RelayCommand<object>(_addPoet, _isAddPoetValid);
                 }
                 return _addPoetCommand;
+            }
+        }
+        public ICommand DeletePoetCommand
+        {
+            get
+            {
+                if (_deletePoetCommand == null)
+                {
+                    _deletePoetCommand = new RelayCommand<object>(_deletePoet, c => SelectedPoet != null);
+                }
+                return _deletePoetCommand;
             }
         }
 
@@ -99,9 +119,11 @@ namespace Poetry.Uploader.ViewModel
         private IDispatcher _dispatcher;
         private RelayCommand<object> _loadedCommand;
         private RelayCommand<object> _addPoetCommand;
+        private RelayCommand<object> _deletePoetCommand;
         private bool _isBusy;
         private string _poetToAdd;
         private string _error;
+        private PoetDTO _selectedPoet;
 
         public CreatePoetViewModel(IPoetService poetService, IDispatcher dispatcher)
         {
@@ -146,6 +168,24 @@ namespace Poetry.Uploader.ViewModel
             {
                 _error = ValidationConstants.CreatePoetViewModel_FailedAddPoet;
             }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async void _deletePoet(object obj)
+        {
+            IsBusy = true;
+            try
+            {
+                var deletedPoet = await _poetService.DeletePoet(SelectedPoet.Id);
+                Poets.Remove(SelectedPoet);
+            }
+            catch (Exception)
+            {
+                _error = ValidationConstants.CreatePoetViewModel_FailedDeletePoet;
+            } 
             finally
             {
                 IsBusy = false;

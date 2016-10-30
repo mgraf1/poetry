@@ -14,5 +14,7 @@ namespace Poetry.Services
         PoetDTO GetPoet(int id);
 
          PoetDTO AddPoet(PoetDTO poet);
+
+        PoetDTO DeletePoet(int id);
     }
 }

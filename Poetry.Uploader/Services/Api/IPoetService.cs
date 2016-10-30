@@ -14,5 +14,7 @@ namespace Poetry.Uploader.Services.Api
         Task<PoetDTO> GetPoet(int id);
 
         Task<PoetDTO> AddPoet(PoetDTO poet);
+
+        Task<PoetDTO> DeletePoet(int id);
     }
 }

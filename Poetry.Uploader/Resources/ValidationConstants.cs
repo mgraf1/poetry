@@ -27,5 +27,10 @@ namespace Poetry.Uploader.Resources
         {
             get { return "Unable to add poet."; }
         }
+
+        public static string CreatePoetViewModel_FailedDeletePoet
+        {
+            get { return "Unable to delete poet."; }
+        }
     }
 }
