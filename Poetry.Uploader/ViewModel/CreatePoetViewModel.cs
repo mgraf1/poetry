@@ -4,6 +4,7 @@ using Poetry.DTO.Models;
 using Poetry.Uploader.Resources;
 using Poetry.Uploader.Services.Api;
 using Poetry.Uploader.Services.WpfHelpers;
+using Poetry.Uploader.ViewModel.Commands.Async;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -48,13 +49,13 @@ namespace Poetry.Uploader.ViewModel
             }
         }
 
-        public ICommand LoadedCommand
+        public IAsyncCommand LoadedCommand
         {
             get
             {
                 if (_loadedCommand == null)
                 {
-                    _loadedCommand = new RelayCommand<object>(_loaded);
+                    _loadedCommand = AsyncCommand.Create(_loaded);
                 }
                 return _loadedCommand;
             }
@@ -117,10 +118,11 @@ namespace Poetry.Uploader.ViewModel
 
         private IPoetService _poetService;
         private IDispatcher _dispatcher;
-        private RelayCommand<object> _loadedCommand;
+        private AsyncCommand<object> _loadedCommand;
         private RelayCommand<object> _addPoetCommand;
         private RelayCommand<object> _deletePoetCommand;
         private bool _isBusy;
+        private bool _firstLoad;
         private string _poetToAdd;
         private string _error;
         private PoetDTO _selectedPoet;
@@ -130,26 +132,31 @@ namespace Poetry.Uploader.ViewModel
             _poetService = poetService;
             _dispatcher = dispatcher;
             _isBusy = true;
+            _firstLoad = true;
             Poets = new ObservableCollection<PoetDTO>();
         }
 
-        private async void _loaded(object obj)
+        private async Task _loaded()
         {
-            try
+            if (_firstLoad)
             {
-                var poets = await _poetService.GetAllPoets();
-                foreach (var poet in poets)
+                _firstLoad = false;
+                try
                 {
-                    Poets.Add(poet);
+                    var poets = await _poetService.GetAllPoets();
+                    foreach (var poet in poets)
+                    {
+                        Poets.Add(poet);
+                    }
                 }
-            }
-            catch (Exception)
-            {
-                _error = ValidationConstants.CreatePoetViewModel_FailedLoad;
-            }
-            finally
-            {
-                IsBusy = false;
+                catch (Exception)
+                {
+                    _error = ValidationConstants.CreatePoetViewModel_FailedLoad;
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
             }
         }
 

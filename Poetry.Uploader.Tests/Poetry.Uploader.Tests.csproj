@@ -83,6 +83,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Helpers\MessageHelper.cs" />
     <Compile Include="PoetryGeneration\MarkovChainTests.cs" />
     <Compile Include="PoetryGeneration\NGramTests.cs" />
     <Compile Include="PoetryGeneration\PoetryParserTests.cs" />

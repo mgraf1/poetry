@@ -9,9 +9,6 @@ namespace Poetry.Uploader.Services.Messages
 {
     public static class ShowDialogMessages
     {
-        public class OpenFileMessage : MessageBase { }
-        public class UploadPoemMessage : MessageBase { }
-        public class PoetSelectionMessage : MessageBase { }
-        public class CreatePoetMessage : MessageBase { }
+        public class SelectFileMessage : MessageBase { }
     }
 }

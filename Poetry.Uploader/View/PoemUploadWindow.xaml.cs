@@ -24,18 +24,6 @@ namespace Poetry.Uploader.View
         public PoemUploadWindow()
         {
             InitializeComponent();
-            Messenger.Default.Register<ShowDialogMessages.PoetSelectionMessage>(this, msg => _showPoetSelectionDialog());
-        }
-
-        private void _showPoetSelectionDialog()
-        {
-            var poetSelectionWindow = new PoetSelectionWindow();
-            ShowDialog(poetSelectionWindow);
-        }
-
-        private void poemUploadWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Messenger.Default.Unregister<ShowDialogMessages.PoetSelectionMessage>(this);
         }
     }
 }

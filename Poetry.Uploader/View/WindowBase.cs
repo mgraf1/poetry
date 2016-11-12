@@ -13,7 +13,7 @@ namespace Poetry.Uploader.View
     {
         public WindowBase()
         {
-            Messenger.Default.Register<ShowDialogMessages.OpenFileMessage>(this, m =>
+            Messenger.Default.Register<ShowDialogMessages.SelectFileMessage>(this, m =>
             {
                 var fileDialog = new Microsoft.Win32.OpenFileDialog()
                 {
@@ -23,9 +23,9 @@ namespace Poetry.Uploader.View
 
                 var result = fileDialog.ShowDialog();
 
-                var resultMessage = new OpenFileResultMessage(result, fileDialog.FileName);
+                var resultMessage = new SelectFileResultMessage(result, fileDialog.FileName);
 
-                Messenger.Default.Send<OpenFileResultMessage>(resultMessage);
+                Messenger.Default.Send<SelectFileResultMessage>(resultMessage);
             });
 
             Closing += WindowBase_OnClosing;
@@ -33,7 +33,7 @@ namespace Poetry.Uploader.View
 
         private void WindowBase_OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Messenger.Default.Unregister<ShowDialogMessages.OpenFileMessage>(this);
+            Messenger.Default.Unregister<ShowDialogMessages.SelectFileMessage>(this);
             Closing -= WindowBase_OnClosing;
         }
 

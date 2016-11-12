@@ -1,6 +1,4 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using Poetry.Uploader.Services.Messages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,20 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Poetry.Uploader.View
+namespace Poetry.Uploader.View.Controls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for UploadPoemControl.xaml
     /// </summary>
-    public partial class MainWindow : WindowBase
+    public partial class UploadPoemControl : UserControl
     {
-        public MainWindow()
+        public UploadPoemControl()
         {
             InitializeComponent();
-        }
-
-        private void mainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
         }
     }
 }

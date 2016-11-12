@@ -7,100 +7,23 @@
         xmlns:local="clr-namespace:Poetry.Uploader"
         xmlns:view="clr-namespace:Poetry.Uploader.View"
         xmlns:shared="clr-namespace:Poetry.Uploader.View.Shared"
-        DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+        xmlns:uc="clr-namespace:Poetry.Uploader.View.Controls"
         mc:Ignorable="d"
         Title="MainWindow"
         x:Name="mainWindow"
         Closing="mainWindow_Closing"
         Height="350"
         Width="525">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height=".15*" />
-        </Grid.RowDefinitions>
 
-        <DataGrid HorizontalAlignment="Left"
-                  Grid.Column="0"
-                  Grid.Row="0"
-                  Grid.ColumnSpan="2"
-                  Grid.RowSpan="1"
-                  Height="Auto"
-                  VerticalAlignment="Top"
-                  Margin="15,15,7.5,0">
-
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Title"
-                                    Width="*" />
-                <DataGridTextColumn Header="Poet"
-                                    Width="*" />
-                <DataGridTextColumn Header="Year"
-                                    Width="*" />
-            </DataGrid.Columns>
-
-        </DataGrid>
-
-        <StackPanel Grid.Column="2"
-                    Grid.Row="0"
-                    Grid.ColumnSpan="1"
-                    Grid.RowSpan="1"
-                    Margin="7.5,15,15,0">
-
-            <ComboBox x:Name="gramSizeCombo" 
-                      IsEditable="True"
-                      IsReadOnly="True"
-                      Text="-- Select Gram Size --"
-                      SelectedItem="{Binding GramSize, ValidatesOnDataErrors=True}"
-                      ItemsSource="{Binding GramSizeSource}"/>
-
-            <shared:ErrorDisplay ControlToValidate="{Binding ElementName=gramSizeCombo}" />
-
-        </StackPanel>
-
-        <Grid Grid.Row="2"
-              Grid.Column="0"
-              Grid.ColumnSpan="3">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Button Content="Generate"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Margin="15,10,7.5,10" />
-
-            <Button Content="Load Poetry"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Command="{Binding LoadPoetryCommand}"
-                    Margin="7.5,10,7.5,10" />
-
-            <Button Content="Create Poet"
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    Command="{Binding CreatePoetCommand}"
-                    Margin="7.5,10,7.5,10" />
-
-            <Button Content="Exit"
-                    Grid.Row="0"
-                    Grid.Column="3"
-                    Margin="7.5,10,15,10"
-                    Command="{Binding ExitCommand}"
-                    CommandParameter="{Binding ElementName=mainWindow}" />
-
-        </Grid>
-
-    </Grid>
+    <TabControl>
+        <TabItem Header="Create">
+            <uc:CreateControl DataContext="{Binding Source={StaticResource Locator}, Path=Main}" />
+        </TabItem>
+        <TabItem Header="Poets">
+            <uc:ManagePoetsControl DataContext="{Binding Source={StaticResource Locator}, Path=CreatePoet}" />
+        </TabItem>
+        <TabItem Header="Poems">
+            <uc:UploadPoemControl DataContext="{Binding Source={StaticResource Locator}, Path=PoemUpload}" />
+        </TabItem>
+    </TabControl>
 </view:WindowBase>

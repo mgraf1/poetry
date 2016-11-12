@@ -26,7 +26,7 @@ namespace Poetry.Uploader.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainViewModel : ViewModelBase, IDataErrorInfo
+    public class MainViewModel : ViewModelBase
     {   
         public ICommand ExitCommand
         {
@@ -40,81 +40,8 @@ namespace Poetry.Uploader.ViewModel
             }
         }
 
-        public ICommand LoadPoetryCommand
-        {
-            get
-            {
-                if (_loadPoetryCommand == null)
-                {
-                    _loadPoetryCommand = new RelayCommand<object>(x => _loadPoetry(),
-                        x => GramSize >= GramSizeSource.First());
-                }
-                return _loadPoetryCommand;
-            }
-        }
-
-        public ICommand CreatePoetCommand
-        {
-            get
-            {
-                if (_createPoetCommand == null)
-                {
-                    _createPoetCommand = new RelayCommand<object>(x => _createPoet());
-                }
-                return _createPoetCommand;
-            }
-        }
-
-        public int GramSize { get; set; }
-        public IEnumerable<int> GramSizeSource
-        {
-            get
-            {
-                if (_gramSizeSource == null)
-                {
-                    _gramSizeSource = new List<int> { 2, 3, 4 };
-                }
-                return _gramSizeSource;
-            }      
-        }
-
-        #region Validation
-
-        public string Error
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public string this[string columnName]
-        {
-            get
-            {
-                string errorMessage = null;
-                switch (columnName)
-                {
-                    case nameof(GramSize):
-                        if (GramSize < GramSizeSource.First())
-                        {
-                            errorMessage = ValidationConstants.MainViewModel_GramSize_Err;
-                        }
-                        
-                        break;
-                }
-
-                return errorMessage;
-            }
-        }
-
-        #endregion
-
         private RelayCommand<View.IWindow> _exitCommand;
-        private RelayCommand<object> _loadPoetryCommand;
-        private RelayCommand<object> _createPoetCommand;
         private IPoetryParser _poetryParser;
-        private List<int> _gramSizeSource;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -122,16 +49,6 @@ namespace Poetry.Uploader.ViewModel
         public MainViewModel(IPoetryParser poetryParser)
         {
             _poetryParser = poetryParser;
-        }
-
-        private void _loadPoetry()
-        {
-            Messenger.Default.Send<ShowDialogMessages.UploadPoemMessage>(new ShowDialogMessages.UploadPoemMessage()); 
-        }
-
-        private void _createPoet()
-        {
-            Messenger.Default.Send<ShowDialogMessages.CreatePoetMessage>(new ShowDialogMessages.CreatePoetMessage());
         }
     }
 }

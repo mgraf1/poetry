@@ -6,6 +6,7 @@ using Poetry.Uploader.Services.Api;
 using Moq;
 using Poetry.DTO.Models;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace PoetryTests.ViewModel
 {
@@ -101,6 +102,17 @@ namespace PoetryTests.ViewModel
             _viewModel.DeletePoetCommand.Execute(null);
 
             Assert.AreEqual(0, _viewModel.Poets.Count);
+        }
+
+        [TestMethod]
+        public void LoadedCommand_CantLoadTwice()
+        {
+            IEnumerable<PoetDTO> dtoList = new List<PoetDTO> { new PoetDTO { Name = "Bob" } };
+            _poetServiceMock.Setup(m => m.GetAllPoets())
+                .ReturnsAsync(dtoList);
+            _viewModel.LoadedCommand.ExecuteAsync(null).Wait();
+            _viewModel.LoadedCommand.ExecuteAsync(null).Wait();
+            Assert.AreEqual(1, _viewModel.Poets.Count);
         }
     }
 }

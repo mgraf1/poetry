@@ -1,35 +1,34 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Poetry.Uploader.ViewModel;
-using GalaSoft.MvvmLight.Messaging;
 using Poetry.Uploader.Services.Messages;
+using Poetry.Uploader.Services.Api;
+using Moq;
+using PoetryTests.Helpers;
 
 namespace PoetryTests.ViewModel
 {
     [TestClass]
     public class PoemUploadViewModelTests
     {
-        private PoemUploadViewModel viewModel;
+        private PoemUploadViewModel _viewModel;
+        private Mock<IPoetService> _poetServiceMock;
+        private MessageHelper _messageHelper;
 
         [TestInitialize]
         public void MyTestInitialize()
         {
-            viewModel = new PoemUploadViewModel();
+            _poetServiceMock = new Mock<IPoetService>();
+            _viewModel = new PoemUploadViewModel(_poetServiceMock.Object);
+            _messageHelper = new MessageHelper();
         }
 
         [TestMethod]
-        public void SelectPoetCommand_MessageSent()
+        public void SelectFileCommand_SendMessage()
         {
-            bool messageReceived = false;
-            Messenger.Default.Register<ShowDialogMessages.PoetSelectionMessage>(this, 
-                msg =>
-                {
-                    Assert.IsNotNull(msg);
-                    Messenger.Default.Unregister<ShowDialogMessages.PoetSelectionMessage>(this);
-                    messageReceived = true;
-                });
-            viewModel.SelectPoetCommand.Execute(null);
-            Assert.IsTrue(messageReceived);
+            _messageHelper.TestMessageReceived<ShowDialogMessages.SelectFileMessage>();
+            _viewModel.SelectFileCommand.Execute(null);
+            Assert.IsTrue(_messageHelper.WasMessageReceived());
         }
     }
 }

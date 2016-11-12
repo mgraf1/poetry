@@ -119,12 +119,23 @@
     <Compile Include="Services\Messages\OpenFileResultMessage.cs" />
     <Compile Include="Services\WpfHelpers\Dispatcher.cs" />
     <Compile Include="Services\WpfHelpers\IDispatcher.cs" />
+    <Compile Include="ViewModel\Commands\Async\AsyncCommand.cs" />
+    <Compile Include="ViewModel\Commands\Async\AsyncCommandBase.cs" />
+    <Compile Include="ViewModel\Commands\Async\DelegateCommand.cs" />
+    <Compile Include="ViewModel\Commands\Async\IAsyncCommand.cs" />
+    <Compile Include="ViewModel\Commands\Async\NotifyTaskCompletion.cs" />
     <Compile Include="ViewModel\CreatePoetViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PoemUploadViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="View\CreatePoetWindow.xaml.cs">
-      <DependentUpon>CreatePoetWindow.xaml</DependentUpon>
+    <Compile Include="View\Controls\CreateControl.xaml.cs">
+      <DependentUpon>CreateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\ManagePoetsControl.xaml.cs">
+      <DependentUpon>ManagePoetsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\UploadPoemControl.xaml.cs">
+      <DependentUpon>UploadPoemControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PoemUploadWindow.xaml.cs">
       <DependentUpon>PoemUploadWindow.xaml</DependentUpon>
@@ -136,7 +147,15 @@
       <DependentUpon>ErrorDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WindowBase.cs" />
-    <Page Include="View\CreatePoetWindow.xaml">
+    <Page Include="View\Controls\CreateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\ManagePoetsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\UploadPoemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
